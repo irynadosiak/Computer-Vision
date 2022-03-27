@@ -1,4 +1,4 @@
-# Implement histogram left shift
+# Histogram left shift
 
 ### Launch:
 Install the following libraries:
