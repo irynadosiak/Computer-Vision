@@ -4,6 +4,7 @@
 Install the following libraries:
 - numpy
 - matplotlib
+
 Run the program with the python preprocessing.py command.
 
 ### Resilt comparison:
