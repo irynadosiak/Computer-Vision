@@ -17,14 +17,14 @@ def draw_matches(matches, key1, key2, image1, image2):
     plt.show()
 
 
-def brisk_descriptor(img1, img2):
+def surf_descriptor(img1, img2):
     # Convert the training image to gray scale
     image1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
     image2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
     # Create a Surf Matcher object
-    brisk = cv.xfeatures2d.SURF_create()
-    key1, desc1 = brisk.detectAndCompute(image1, None)
-    key2, desc2 = brisk.detectAndCompute(image2, None)
+    surf = cv.xfeatures2d.SURF_create()
+    key1, desc1 = surf.detectAndCompute(image1, None)
+    key2, desc2 = surf.detectAndCompute(image2, None)
     print('Number of key_points detected on distorted image:', len(key2), "\n")
     return key1, desc1, key2, desc2
 
@@ -53,7 +53,7 @@ images = [{"train": 'images/train.png', "test": 'images/test.png'},
 for img in images:
     original_image = cv.cvtColor(cv.imread(img["train"]), cv.COLOR_BGR2RGB)
     distorted_image = cv.cvtColor(cv.imread(img["test"]), cv.COLOR_BGR2RGB)
-    key1, desc1, key2, desc2 = brisk_descriptor(original_image, distorted_image)
+    key1, desc1, key2, desc2 = surf_descriptor(original_image, distorted_image)
     matches1 = brute_force_matcher(desc1, desc2)
     draw_matches(matches1, key1, key2, original_image, distorted_image)
     matches2 = own_matcher(desc1, desc2)
